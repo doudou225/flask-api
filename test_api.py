@@ -14,7 +14,7 @@ class TestApi(unittest.TestCase):
         self.assertIn(response.status_code, success_code, failure_message)
 
     def test_contact(self):
-        response = self.client.get('/contacta')
+        response = self.client.get('/contact')
         success_code = [200]
         failure_message = "Failure 2.0"
         self.assertIn(b'Contact Page', response.data, failure_message)
