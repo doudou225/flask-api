@@ -26,3 +26,19 @@ jobs:
       - name: Run unittest script
         run: python -m unittest test_api.py
 
+  docker:
+    needs: Test-Flask-Api
+    runs-on: ubuntu-latest
+    if: success()
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Log in to Docker Hub
+      run: echo "${{ secrets.DOCKERHUB_PASSWORD }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
+
+    - name: Build Docker image
+      run: docker build -t doudou225/webapp:${{ github.sha }} .
+
+    - name: Push Docker image
+      run: docker push doudou225/webapp:${{ github.sha }}
