@@ -7,7 +7,7 @@ class TestApi(unittest.TestCase):
         self.client = app.test_client()
 
     def test_api(self):
-        response = self.client.get('/')
+        response = self.client.get('/api/users')
         success_code = [200, 308]
         failure_message = "Failure 2.0"
         #self.assertEqual(response.status_code, 200)
