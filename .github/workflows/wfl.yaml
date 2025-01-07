@@ -24,8 +24,6 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-      - name: Run the app
-        run: python api.py
-      - name: curl the app
-        run: curl http://localhost:5000/api/users/
+      - name: Test app
+        run: python -m unittest test_api.py
       - run: echo "🍏 This job's status is ${{ job.status }}."
